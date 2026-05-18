@@ -1,4 +1,6 @@
+import matplotlib.pyplot as plt
 import pandas as pd
+import seaborn as sns
 
 # Carregando o arquivo
 # Convertendo Postal Code para str para evitar erros com códigos começando com zero
@@ -57,3 +59,38 @@ venda_invalida = len(df[df["Sales"] <= 0])
 print("Linhas com venda inválida: ", venda_invalida)
 
 print("Nenhum valor inválido encontrado!", "\n")
+
+# Identificação de outliers
+# Por meio de box plots
+fig, axs = plt.subplots(nrows=2, ncols=2)
+
+sns.boxplot(x=df["Sales"], ax=axs[0, 0])
+axs[0, 0].set_title("Sales")
+
+sns.boxplot(x=df["Quantity"], ax=axs[0, 1])
+axs[0, 1].set_title("Quantity")
+
+sns.boxplot(x=df["Discount"], ax=axs[1, 0])
+axs[1, 0].set_title("Discount")
+
+sns.boxplot(x=df["Profit"], ax=axs[1, 1])
+axs[1, 1].set_title("Profit")
+
+fig.suptitle("Identificação de outliers")
+
+plt.show()
+
+# Valores de Sales e Profit não são úteis, então gerando mais um gráfico sem eles
+fig, axs = plt.subplots(ncols=2)
+
+sns.boxplot(x=df["Quantity"], ax=axs[0])
+axs[0].set_title("Quantity")
+
+sns.boxplot(x=df["Discount"], ax=axs[1])
+axs[1].set_title("Discount")
+
+fig.suptitle("Identificação de outliers 2")
+
+plt.show()
+
+# TBD - QUANTILES

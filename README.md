@@ -26,6 +26,8 @@ Link para o Notebook: TBD
 
 ## Etapas de desenvolvimento
 
+- Box plot de sales e profit mostra muitos "outliers", então serão desconsiderados para a procura de outliers pois não são úteis
+
 ## Principais Insights
 
 ## Dashboard
