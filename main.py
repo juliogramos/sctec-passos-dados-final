@@ -121,3 +121,22 @@ print(f"{len(outliers_combinados)} outliers removidos")
 print(
     f"Tamanho do novo dataframe: {len(df_limpo)}, {len(df_limpo) / len(df) * 100:.2f}% do dataset original"
 )
+
+# Salvando o df antigo para uma variável diferente
+# e passando o limpo para df
+df_antigo = df
+df = df_limpo
+print(len(df_antigo), len(df), "\n")
+
+# Feature Engineering
+print("FEATURE ENGINEERING")
+
+# Extraíndo apenas o mês das datas, não acho que dia e ano sejam muito úteis
+df["MY Order_Month"] = df["MY Order Date"].dt.month
+print("EXTRAÍNDO MÊS DO PEDIDO")
+print(df["MY Order_Month"], "\n")
+
+# Extraíndo tempo (dias) que o pedido levou para ser entregue
+df["MY Days Taken"] = (df["MY Ship Date"] - df["MY Order Date"]).dt.days
+print("EXTRAÍNDO TEMPO DE ENTREGA DO PEDIDO EM DIAS")
+print(df["MY Days Taken"], "\n")
