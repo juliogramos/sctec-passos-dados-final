@@ -1,3 +1,4 @@
+import matplotlib.pyplot as plt
 from pandas import DataFrame
 
 
@@ -12,3 +13,11 @@ def outlier_calc(df: DataFrame, coluna: str):
         f"Outliers em {coluna}: {len(outliers)}, {len(outliers) / len(df) * 100:.2f}% do dataset"
     )
     return outliers
+
+
+def plot_params_and_show(title: str, xlabel: str, ylabel: str, rotation: int):
+    plt.title(title)
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    plt.xticks(rotation=rotation)
+    plt.show()

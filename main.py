@@ -1,8 +1,9 @@
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
 import seaborn as sns
 
-from utilitarios import outlier_calc
+from utilitarios import outlier_calc, plot_params_and_show
 
 # Carregando o arquivo
 # Convertendo Postal Code para str para evitar erros com códigos começando com zero
@@ -140,3 +141,47 @@ print(df["MY Order_Month"], "\n")
 df["MY Days Taken"] = (df["MY Ship Date"] - df["MY Order Date"]).dt.days
 print("EXTRAÍNDO TEMPO DE ENTREGA DO PEDIDO EM DIAS")
 print(df["MY Days Taken"], "\n")
+
+# AED
+print("ANÁLISE EXPLORATÓRIA DE DADOS", "\n")
+
+# Quais os países?
+print(f"Países: {np.array2string(df['Country'].unique())}", "\n")
+
+# Métricas de vendas
+print(f"Total de vendas: {df['Sales'].sum():.2f}")
+print(f"Venda média: {np.mean(df['Sales']):.2f}", "\n")
+
+# Métricas de categorias
+df_categorias = df.groupby("Category")
+
+# Categorias com mais vendas
+print("Número de vendas por categorias")
+print(df_categorias.size().sort_values(ascending=False), "\n")
+
+df_categorias.size().plot(kind="bar")
+plot_params_and_show("Vendas por categoria", "Categoria", "Vendas", 0)
+
+# Categorias com mais lucros
+print("Lucro por categoria")
+print(df_categorias["Profit"].sum().sort_values(ascending=False), "\n")
+
+df_categorias["Profit"].sum().plot(kind="bar")
+plot_params_and_show("Lucro por categoria", "Categoria", "Lucro", 0)
+
+# Métricas de subcategorias
+df_subcategorias = df.groupby("Sub-Category")
+
+# Subcategorias com mais vendas
+print("Número de vendas por subcategorias")
+print(df_subcategorias.size().sort_values(ascending=False), "\n")
+
+df_subcategorias.size().plot(kind="bar")
+plot_params_and_show("Vendas por subcategoria", "Subcategoria", "Vendas", 45)
+
+# Subcategorias com mais lucros
+print("Lucro por subcategoria")
+print(df_subcategorias["Profit"].sum().sort_values(ascending=False), "\n")
+
+df_subcategorias["Profit"].sum().plot(kind="bar")
+plot_params_and_show("Lucro por subcategoria", "Subcategoria", "Lucro", 45)
