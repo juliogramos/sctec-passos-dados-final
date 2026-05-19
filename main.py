@@ -2,6 +2,8 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 
+from utilitarios import outlier_calc
+
 # Carregando o arquivo
 # Convertendo Postal Code para str para evitar erros com códigos começando com zero
 df = pd.read_csv(
@@ -80,7 +82,7 @@ fig.suptitle("Identificação de outliers")
 
 plt.show()
 
-# Valores de Sales e Profit não são úteis, então gerando mais um gráfico sem eles
+# Box Plot de Sales e Profit não são úteis, então gerando mais um gráfico sem eles
 fig, axs = plt.subplots(ncols=2)
 
 sns.boxplot(x=df["Quantity"], ax=axs[0])
@@ -93,4 +95,29 @@ fig.suptitle("Identificação de outliers 2")
 
 plt.show()
 
-# TBD - QUANTILES
+# Identificando outliers pelo método dos quantis
+print("IDENTIFICANDO OUTLIERS")
+
+outliers_quantity = outlier_calc(df, "Quantity")
+outliers_discount = outlier_calc(df, "Discount")
+outliers_sales = outlier_calc(df, "Sales")
+outliers_profit = outlier_calc(df, "Profit")
+print("\n")
+
+# Como os outliers de sales e profit juntos são quase um terço do dataset, decidi não os remover
+# Removendo apenas os outliers de Quantity e Discount
+print("REMOVENDO OUTLIERS DE QUANTITY E DISCOUNT")
+outliers_combinados = (
+    pd.concat([outliers_quantity, outliers_discount])
+    .drop_duplicates()
+    .reset_index(drop=True)
+)
+print(outliers_combinados.head())
+
+df_limpo = df[~df.isin(outliers_combinados)].dropna()
+df_limpo[~df_limpo.isin(outliers_discount)].dropna(inplace=True)
+
+print(f"{len(outliers_combinados)} outliers removidos")
+print(
+    f"Tamanho do novo dataframe: {len(df_limpo)}, {len(df_limpo) / len(df) * 100:.2f}% do dataset original"
+)
