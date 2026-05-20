@@ -23,23 +23,6 @@ print(df.head(), "\n")
 print("VISUALIZAÇÃO DOS TIPOS DE DADOS:")
 print(df.info(), "\n")
 
-# Convertendo datas (formato mês/dia/ano)
-# Criando novas colunas caso precise dos originais
-# Prefixando todas as colunas criadas por mim com "MY" para ajudar na identificação
-df["MY Order Date"] = pd.to_datetime(
-    df["Order Date"], format="%m/%d/%Y", errors="coerce"
-)
-df["MY Ship Date"] = pd.to_datetime(df["Ship Date"], format="%m/%d/%Y", errors="coerce")
-
-print("VISUALIZANDO NOVOS CAMPOS DE DATA:")
-print(df.info(), "\n")
-
-print("COMPARANDO DATAS:")
-print(df[["Order Date", "MY Order Date"]])
-print(df[["Ship Date", "MY Ship Date"]], "\n")
-
-print(df["Sales"].sum())
-
 # Tratamento de duplicados
 print("TRATAMENTO DE DUPLICADOS:")
 duplicados = df.duplicated().sum()
@@ -128,6 +111,23 @@ print(
 df_antigo = df
 df = df_limpo
 print(len(df_antigo), len(df), "\n")
+
+# Convertendo datas (formato mês/dia/ano)
+# Criando novas colunas caso precise dos originais
+# Prefixando todas as colunas criadas por mim com "MY" para ajudar na identificação
+df["MY Order Date"] = pd.to_datetime(
+    df["Order Date"], format="%m/%d/%Y", errors="coerce"
+)
+df["MY Ship Date"] = pd.to_datetime(df["Ship Date"], format="%m/%d/%Y", errors="coerce")
+
+print("VISUALIZANDO NOVOS CAMPOS DE DATA:")
+print(df.info(), "\n")
+
+print("COMPARANDO DATAS:")
+print(df[["Order Date", "MY Order Date"]])
+print(df[["Ship Date", "MY Ship Date"]], "\n")
+
+print(df["Sales"].sum())
 
 # Feature Engineering
 print("FEATURE ENGINEERING")
