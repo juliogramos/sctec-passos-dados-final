@@ -171,6 +171,11 @@ print(f"Países: {np.array2string(df['Country'].unique())}", "\n")
 print(f"Total de vendas: {df['Sales'].sum():.2f}")
 print(f"Venda média: {np.mean(df['Sales']):.2f}", "\n")
 
+# Top 10 produtos mais vendidos
+df_produtos = df.groupby("Product Name")
+df_produtos.size().nlargest(10).plot(kind="bar", figsize=(12, 12))
+plot_params_and_show("Top 10 produtos mais vendidos", "Produtos", "Vendas", 45)
+
 # Métricas de categorias
 df_categorias = df.groupby("Category")
 

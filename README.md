@@ -37,7 +37,21 @@ Link para o Notebook: [https://colab.research.google.com/drive/1cDIKwTC0Z5_I8z-C
 
 ## Etapas de desenvolvimento
 
-- Box plot de sales e profit mostra muitos "outliers", então serão desconsiderados para a procura de outliers pois não são úteis
+### 1. Definição do formato
+
+O projeto foi primeiro desenvolvido em um arquivo Python, para que o código possa ser guardado no Github mais facilmente. Após todo o código ser escrito, um notebook foi criado a partir desse código para mais fácil compartilhamento e visualização do projeto.
+
+### 2. Importação e compreensão dos dados
+
+Para deixar a importação dos arquivos ainda mais conveniente, o notebook utiliza a biblioteca do Kagglehub para baixar o dataset para cache. Para a versão em código, o arquivo CSV do dataset deve ser baixado manualmente e colocado na mesma pasta que o arquivo main.py. O CSV não está incluído no repositório github, mas será enviado na entrega do projeto pelo AVA.
+
+Um arquivo com duas funções utilitárias criadas ao longo do desenvolvimento do projeto também foi produzido. Essas funções estão presentes em uma célula separada na versão notebook.
+
+Após a importação, foram executados os métodos head e info para a checagem inicial do dataset. O campo "Postal Code" originalmente é implementado como int, mas decidi converter ele para string durante a importação. Isso é uma boa prática que foi ensinada nas Trilhas Rápidas de dados: caso o código postal começar com o número zero, esse número será ocultado durante a conversão para inteiro do Python, e o código deixará de ser válido. As demais colunas possuem tipos adequados e não foram modificadas.
+
+### 3. Tratamento e preparação dos dados
+
+Primeiramente realizei a checagem de valores duplicados, e não existia nenhum. O comando info já havia mostrado que não havia valores nulos no dataset mas resolvi fazer a checagem mesmo assim. Também foram verificados valores inválidos, como quantidade negativa de produtos e venda com valor nulo ou negativo, e nenhum foi encontrado.
 
 ## Principais Insights
 
