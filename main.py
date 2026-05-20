@@ -259,3 +259,6 @@ plot_params_and_show("Média de pedidos por mês", "Mês", "Pedidos", 45)
 df_anos = df.groupby("MY Order Year")
 df_anos["Sales"].size().plot(kind="line")
 plot_params_and_show("Pedidos por ano", "Ano", "Pedidos", 45)
+
+# Exportando dataset modificado
+df.to_csv("superstore_modificado.csv")
