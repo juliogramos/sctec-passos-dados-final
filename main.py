@@ -48,7 +48,7 @@ print("Nenhum valor inválido encontrado!", "\n")
 
 # Identificação de outliers
 # Por meio de box plots
-fig, axs = plt.subplots(nrows=2, ncols=2)
+fig, axs = plt.subplots(nrows=2, ncols=2, figsize=(12, 10))
 
 sns.boxplot(x=df["Sales"], ax=axs[0, 0])
 axs[0, 0].set_title("Sales")
@@ -79,7 +79,7 @@ fig.suptitle("Identificação de outliers 2")
 
 plt.show()
 
-# Identificando outliers pelo método dos quantis
+# Identificando outliers pelo método do IQR
 print("IDENTIFICANDO OUTLIERS")
 
 outliers_quantity = outlier_calc(df, "Quantity")
@@ -127,8 +127,6 @@ print("COMPARANDO DATAS:")
 print(df[["Order Date", "MY Order Date"]])
 print(df[["Ship Date", "MY Ship Date"]], "\n")
 
-print(df["Sales"].sum())
-
 # Feature Engineering
 print("FEATURE ENGINEERING")
 
@@ -152,6 +150,7 @@ meses_map = {
     12: "December",
 }
 df["MY Order Month Name"] = df["MY Order Month"].map(meses_map)
+print(df["MY Order Month Name"], "\n")
 
 df["MY Order Year"] = df["MY Order Date"].dt.year
 print("EXTRAÍNDO ANO DO PEDIDO")
@@ -186,8 +185,8 @@ plot_params_and_show("Vendas por categoria", "", "", 90)
 print("Lucro por categoria")
 print(df_categorias["Profit"].sum().sort_values(ascending=False), "\n")
 
-df_categorias["Profit"].sum().plot(kind="bar")
-plot_params_and_show("Lucro por categoria", "Categoria", "Lucro", 0)
+df_categorias["Profit"].sum().plot(kind="pie", autopct="%1.1f%%")
+plot_params_and_show("Lucro por categoria", "", "", 90)
 
 # Métricas de subcategorias
 df_subcategorias = df.groupby("Sub-Category")
@@ -196,14 +195,14 @@ df_subcategorias = df.groupby("Sub-Category")
 print("Número de vendas por subcategorias")
 print(df_subcategorias.size().sort_values(ascending=False), "\n")
 
-df_subcategorias.size().plot(kind="bar")
+df_subcategorias.size().plot(kind="bar", figsize=(12, 8))
 plot_params_and_show("Vendas por subcategoria", "Subcategoria", "Vendas", 45)
 
 # Subcategorias com mais lucros
 print("Lucro por subcategoria")
 print(df_subcategorias["Profit"].sum().sort_values(ascending=False), "\n")
 
-df_subcategorias["Profit"].sum().plot(kind="bar")
+df_subcategorias["Profit"].sum().plot(kind="bar", figsize=(12, 8))
 plot_params_and_show("Lucro por subcategoria", "Subcategoria", "Lucro", 45)
 
 # Relação entre desconto e lucro?
@@ -214,7 +213,7 @@ plot_params_and_show("Lucro por desconto", "Desconto", "Lucro", 45)
 df_desconto_positivo = df[df["Profit"] > 0].groupby("Discount")
 df_desconto_positivo["Profit"].count().plot(kind="bar")
 plot_params_and_show(
-    "Instâncias de lucro positivo por desconto", "Nº de lucros", "Desconto", 45
+    "Instâncias de lucro positivo por desconto", "Desconto", "Nº de lucros", 45
 )
 
 # Informações sobre o tempo de entrega
@@ -229,9 +228,9 @@ print(
     "\n",
 )
 
-# Top 10 Cidades
+# Top 10 cidades com mais vendas
 df_cidades = df.groupby("City")
-df_cidades.size().nlargest(10).plot(kind="bar")
+df_cidades.size().nlargest(10).plot(kind="bar", figsize=(12, 8))
 plot_params_and_show("Top 10 cidades com mais pedidos", "Cidades", "Pedidos", 45)
 
 # New York City e Los Angeles tem liderança considerável
@@ -245,7 +244,7 @@ print(df_cidades_ny_la["MY Days Taken"].mean(), "\n")
 
 # Cidades com mais entregas imediatas
 df_cidades_entrega_imediata = df[df["MY Days Taken"] == 0].groupby("City")
-df_cidades_entrega_imediata.size().nlargest(10).plot(kind="bar")
+df_cidades_entrega_imediata.size().nlargest(10).plot(kind="bar", figsize=(12, 8))
 plot_params_and_show(
     "Top 10 cidades com mais entregas imediatas", "Cidades", "Entregas imediatas", 45
 )
