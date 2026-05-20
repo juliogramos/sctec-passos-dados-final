@@ -132,10 +132,30 @@ print(len(df_antigo), len(df), "\n")
 # Feature Engineering
 print("FEATURE ENGINEERING")
 
-# Extraíndo apenas o mês das datas, não acho que dia e ano sejam muito úteis
-df["MY Order_Month"] = df["MY Order Date"].dt.month
+# Extraíndo apenas o mês e ano das datas, não acho que dia seja muito útil
+df["MY Order Month"] = df["MY Order Date"].dt.month
 print("EXTRAÍNDO MÊS DO PEDIDO")
-print(df["MY Order_Month"], "\n")
+print(df["MY Order Month"], "\n")
+
+meses_map = {
+    1: "January",
+    2: "February",
+    3: "March",
+    4: "April",
+    5: "May",
+    6: "June",
+    7: "July",
+    8: "August",
+    9: "September",
+    10: "October",
+    11: "November",
+    12: "December",
+}
+df["MY Order Month Name"] = df["MY Order Month"].map(meses_map)
+
+df["MY Order Year"] = df["MY Order Date"].dt.year
+print("EXTRAÍNDO ANO DO PEDIDO")
+print(df["MY Order Year"], "\n")
 
 # Extraíndo tempo (dias) que o pedido levou para ser entregue
 df["MY Days Taken"] = (df["MY Ship Date"] - df["MY Order Date"]).dt.days
@@ -159,8 +179,8 @@ df_categorias = df.groupby("Category")
 print("Número de vendas por categorias")
 print(df_categorias.size().sort_values(ascending=False), "\n")
 
-df_categorias.size().plot(kind="bar")
-plot_params_and_show("Vendas por categoria", "Categoria", "Vendas", 0)
+df_categorias.size().plot(kind="pie", autopct="%1.1f%%")
+plot_params_and_show("Vendas por categoria", "", "", 90)
 
 # Categorias com mais lucros
 print("Lucro por categoria")
@@ -185,3 +205,58 @@ print(df_subcategorias["Profit"].sum().sort_values(ascending=False), "\n")
 
 df_subcategorias["Profit"].sum().plot(kind="bar")
 plot_params_and_show("Lucro por subcategoria", "Subcategoria", "Lucro", 45)
+
+# Relação entre desconto e lucro?
+df.plot(kind="scatter", x="Discount", y="Profit")
+plot_params_and_show("Lucro por desconto", "Desconto", "Lucro", 45)
+
+# Qual valor de desconto tem mais instâncias de lucro positivo?
+df_desconto_positivo = df[df["Profit"] > 0].groupby("Discount")
+df_desconto_positivo["Profit"].count().plot(kind="bar")
+plot_params_and_show(
+    "Instâncias de lucro positivo por desconto", "Nº de lucros", "Desconto", 45
+)
+
+# Informações sobre o tempo de entrega
+print("INFORMAÇÕES SOBRE O TEMPO DE ENTREGA")
+print(f"Mínimo: {df['MY Days Taken'].min()}")
+print(f"Máximo: {df['MY Days Taken'].max()}")
+print(f"Média: {df['MY Days Taken'].mean()}")
+
+# Entregas no mesmo dia?
+print(
+    f"Quantidade de entregas no mesmo dia: {len(df[df['Order Date'] == df['Ship Date']])}",
+    "\n",
+)
+
+# Top 10 Cidades
+df_cidades = df.groupby("City")
+df_cidades.size().nlargest(10).plot(kind="bar")
+plot_params_and_show("Top 10 cidades com mais pedidos", "Cidades", "Pedidos", 45)
+
+# New York City e Los Angeles tem liderança considerável
+# Tempo de entrega médio para as duas primeiras cidades
+df_cidades_ny_la = df[
+    (df["City"] == "New York City") | (df["City"] == "Los Angeles")
+].groupby("City")
+
+print("TEMPO DE ENTREGA MÉDIO: TOP 2 CIDADES")
+print(df_cidades_ny_la["MY Days Taken"].mean(), "\n")
+
+# Cidades com mais entregas imediatas
+df_cidades_entrega_imediata = df[df["MY Days Taken"] == 0].groupby("City")
+df_cidades_entrega_imediata.size().nlargest(10).plot(kind="bar")
+plot_params_and_show(
+    "Top 10 cidades com mais entregas imediatas", "Cidades", "Entregas imediatas", 45
+)
+
+# Média de vendas por mês
+df_meses = df.groupby("MY Order Month Name")
+df_meses["Sales"].mean().plot(kind="line")
+plt.xticks(range(1, 13), list(meses_map.values()))
+plot_params_and_show("Média de pedidos por mês", "Mês", "Pedidos", 45)
+
+# Crescimento de pedidos por ano
+df_anos = df.groupby("MY Order Year")
+df_anos["Sales"].size().plot(kind="line")
+plot_params_and_show("Pedidos por ano", "Ano", "Pedidos", 45)
