@@ -69,9 +69,12 @@ Quanto às categorias, foi feito uma descoberta interessante: a categoria com ma
 
 Nas subcategorias, as duas que lideram as vendas são fichários e papel. As duas que lideram em lucros são copiadoras e celulares, o que condiz com a categoria de tecnologia ser a mais lucrativa. Duas subactegorias causam prejuízo: estantes de livros e mesas (muito prejuízo).
 
+Após isso, analisei a relação entre desconto o lucro. O gráfico de pontos deixou aparente que as vendas com 0 e 20% de desconto tendem a gerar mais lucros. Um gráfico de barra filtrando apenas lucros positivos revelou que descontos acima de 40% não geram nenhum lucro. Uma descoberta surpreendente foi que a maioria das vendas foram realizadas com descontos de 0 e 20%, o que pode indicar que o fato desses valores gerarem mais lucro se deve apenas pela maior frequência e não por uma correlação real.
+
 ## Principais Insights
 
 - Tecnologia gera mais lucro mesmo não gerando tantas vendas
 - Mesas geram muito prejuízo e não são tão vendidas, seria bom parar de vender elas
+- Descontos acima de 40% não geram nenhum lucro
 
 ## Dashboard

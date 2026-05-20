@@ -232,8 +232,9 @@ print(f"Máximo: {df['MY Days Taken'].max()}")
 print(f"Média: {df['MY Days Taken'].mean()}")
 
 # Entregas no mesmo dia?
+entregas_mesmo_dia = len(df[df["Order Date"] == df["Ship Date"]])
 print(
-    f"Quantidade de entregas no mesmo dia: {len(df[df['Order Date'] == df['Ship Date']])}",
+    f"Quantidade de entregas no mesmo dia: {entregas_mesmo_dia}, {entregas_mesmo_dia / len(df) * 100:.2f}% das entregas",
     "\n",
 )
 
