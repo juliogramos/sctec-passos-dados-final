@@ -221,6 +221,10 @@ plot_params_and_show(
     "Instâncias de lucro positivo por desconto", "Desconto", "Nº de lucros", 45
 )
 
+df_desconto = df.groupby("Discount")
+df_desconto.size().plot(kind="bar")
+plot_params_and_show("Vendas por valor de desconto", "Desconto", "Vendas", 45)
+
 # Informações sobre o tempo de entrega
 print("INFORMAÇÕES SOBRE O TEMPO DE ENTREGA")
 print(f"Mínimo: {df['MY Days Taken'].min()}")

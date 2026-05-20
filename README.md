@@ -53,6 +53,25 @@ Após a importação, foram executados os métodos head e info para a checagem i
 
 Primeiramente realizei a checagem de valores duplicados, e não existia nenhum. O comando info já havia mostrado que não havia valores nulos no dataset mas resolvi fazer a checagem mesmo assim. Também foram verificados valores inválidos, como quantidade negativa de produtos e venda com valor nulo ou negativo, e nenhum foi encontrado.
 
+Após isso foi feita a identificação de outliers. As colunas de vendas, quantidade, desconto e lucro foram escolhidas para isso. Foi gerado um boxplot para cada coluna, mas apenas os boxplots de quantidade e desconto são visualmente úteis. Neles foi possível identificar claramente alguns outliers, que foram confirmados utilizando o método do IQR. Foid descoberto que os outliers de quantidade e desconto compõe aproximadamente 11% do dataset, e isso me pareceu uma quantidade aceitável de dados a serem removidos. Já os outliers de desconto e lucro compõe aproximadamente 1/3 do dataset, então não os removi.
+
+As colunas de datas foram importadas como string. Converti essas colunas para objetos de data, mas salvei os resultados em novas colunas ao invés de sobrescrever os valores string. Decidi que usaria o prefixo "MY" para identificar fácilmente quais colunas foram criadas por mim.
+
+A partir dessas datas, fiz o feature engineering de dados que julguei serem interessantes: mês do pedido, ano do pedido e quantos dias o pedido levou para ser entregue.
+
+### 4. Análise exploratória
+
+Primeiramente decidi checar quais os países das compras, e descobri que o único país é Estados Unidos. Vi na página do dataset que existem mais de 500 valores únicos de cidade, então decidi não os investigar por enquanto.
+
+Feito isso, investiguei as métricas básicas sobre vendas: o total em vendas registradas ($2049914.67) e a venda média ($228.28). Por curiosidade também chequei os 10 produtos mais vendidos, e identifiquei três produtos que tem uma liderança clara: envelopes grampeados, papel fácil de grampear e grampos.
+
+Quanto às categorias, foi feito uma descoberta interessante: a categoria com mais vendas é a de suprimentos para escritório, mas a categoria que mais gera lucros é a de eletrônicos, que é a categoria com menos vendas.
+
+Nas subcategorias, as duas que lideram as vendas são fichários e papel. As duas que lideram em lucros são copiadoras e celulares, o que condiz com a categoria de tecnologia ser a mais lucrativa. Duas subactegorias causam prejuízo: estantes de livros e mesas (muito prejuízo).
+
 ## Principais Insights
+
+- Tecnologia gera mais lucro mesmo não gerando tantas vendas
+- Mesas geram muito prejuízo e não são tão vendidas, seria bom parar de vender elas
 
 ## Dashboard
