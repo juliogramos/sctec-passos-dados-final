@@ -261,6 +261,7 @@ plot_params_and_show(
 )
 
 # Pedidos por mês
+print("TOP 3 MESES COM MAIS PEDIDOS")
 df_meses = df.sort_values(["MY Order Month"], ascending=True).groupby("MY Order Month")
 df_meses.size().plot(kind="bar").set_xticklabels(list(meses_map.values()))
 print(df_meses.size().nlargest(3))

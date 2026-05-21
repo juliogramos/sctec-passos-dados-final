@@ -35,6 +35,8 @@ Link para o Notebook: [https://colab.research.google.com/drive/1cDIKwTC0Z5_I8z-C
 8. Instalar as bibliotecas com o comando: pip install -r requirements.txt
 9. Rodar o arquivo com o comando: python main.py
 
+Algumas dos arquivos de imagem gerados ficaram com a legenda cortada, então recomendo ver os gráficos rodando o programa.
+
 ## Etapas de desenvolvimento
 
 ### 1. Definição do formato
