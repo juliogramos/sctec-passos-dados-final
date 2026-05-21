@@ -81,9 +81,14 @@ Por fim, chequei o crescimento do número de pedidos e do lucro por ano. O núme
 
 ## Principais Insights
 
-- Tecnologia gera mais lucro mesmo não gerando tantas vendas
-- Mesas geram muito prejuízo e não são tão vendidas, seria bom parar de vender elas
-- Descontos acima de 40% não geram nenhum lucro
-- Maior parte das vendas acontece Novembro e Dezembro, talves presentes?
+A partir da análise exploratória, foi possível gerar alguns insights interessantes:
+
+- A categoria de tecnologia é a que gera mais lucro, mesmo sendo a que possui menos pedidos.
+- A subcategoria de mesas gera muito prejuízo e não gera tantas vendas, em minha opinião seria seguro parar de vender mesas.
+- A maioria dos pedidos acontece quando há um desconto de 0 ou 20%. Porém, isso pode ser sinal de que esse é o desconto mais comum na loja e não de que os clientes "gostam" desse valor, já que os outros dois valores de desconto com mais pedidos são de 70% e 80%.
+- Descontos acima de 40% não geram lucro algum. Talvez a loja tenha percebido isso e começou a oferecer tais descontos com menos frequência, o que explicaria a quantidade de produtos com 0 e 20% de desconto.
+- A maior parte das vendas aconteec em Novembro e Dezembro, o que condiz com os feriados de fim de ano como o natal e ano novo.
+
+Gostaria que o dataset oferecesse mais informações sobre a opinião dos clientes, como avaliação do pedido ou se ele foi devolvido ou não. Fica um pouco difícil de saber se alguns dos insights encontrados são realmente correlações com a qualidade/características dos produtos ou se acontecem apenas por decisões da própria loja,
 
 ## Dashboard
