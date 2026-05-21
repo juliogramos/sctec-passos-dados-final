@@ -8,6 +8,10 @@ Link para o repositório: [https://github.com/juliogramos/sctec-passos-dados-fin
 
 Link para o Notebook: [https://colab.research.google.com/drive/1cDIKwTC0Z5_I8z-CbBbn90IeDoWr0f5r?usp=sharing](https://colab.research.google.com/drive/1cDIKwTC0Z5_I8z-CbBbn90IeDoWr0f5r?usp=sharing)
 
+Link para o Dashboard: [https://datastudio.google.com/reporting/d5a2c2dc-ae5f-4dc9-877b-0e2aa18f2f47](https://datastudio.google.com/reporting/d5a2c2dc-ae5f-4dc9-877b-0e2aa18f2f47)
+
+Link para o Dashboard em PDF caso os gráficos não carreguem: [https://drive.google.com/file/d/1glqk4okexTI3tB3hvcahtcjXmYivo1ZO/view?usp=sharing](https://drive.google.com/file/d/1glqk4okexTI3tB3hvcahtcjXmYivo1ZO/view?usp=sharing)
+
 ## Tecnologias
 
 - Python
@@ -81,7 +85,7 @@ Finalmente, analisei as datas dos pedidos. Os meses que possuem a maior quantida
 
 Por fim, chequei o crescimento do número de pedidos e do lucro por ano. O número de pedidos parece estar aumentando exponencialmente, enquanto o lucro aumenta linearmente. Diria que essa loja está tendo bom crescimento financeiro.
 
-## Principais Insights
+## 5. Principais Insights
 
 A partir da análise exploratória, foi possível gerar alguns insights interessantes:
 
@@ -89,8 +93,8 @@ A partir da análise exploratória, foi possível gerar alguns insights interess
 - A subcategoria de mesas gera muito prejuízo e não gera tantas vendas, em minha opinião seria seguro parar de vender mesas.
 - A maioria dos pedidos acontece quando há um desconto de 0 ou 20%. Porém, isso pode ser sinal de que esse é o desconto mais comum na loja e não de que os clientes "gostam" desse valor, já que os outros dois valores de desconto com mais pedidos são de 70% e 80%.
 - Descontos acima de 40% não geram lucro algum. Talvez a loja tenha percebido isso e começou a oferecer tais descontos com menos frequência, o que explicaria a quantidade de produtos com 0 e 20% de desconto.
-- A maior parte das vendas aconteec em Novembro e Dezembro, o que condiz com os feriados de fim de ano como o natal e ano novo.
+- A maior parte das vendas acontece em Novembro e Dezembro, o que condiz com os feriados de fim de ano como o natal e ano novo.
 
-Gostaria que o dataset oferecesse mais informações sobre a opinião dos clientes, como avaliação do pedido ou se ele foi devolvido ou não. Fica um pouco difícil de saber se alguns dos insights encontrados são realmente correlações com a qualidade/características dos produtos ou se acontecem apenas por decisões da própria loja,
+Gostaria que o dataset oferecesse mais informações sobre a opinião dos clientes, como avaliação do pedido ou se ele foi devolvido ou não. Fica um pouco difícil de saber se alguns dos insights encontrados são realmente correlações com a qualidade/características dos produtos ou se acontecem apenas por decisões da própria loja.
 
-## Dashboard
+Finalmente, montei um dashboard com os principais insights, acessível por este [link](https://datastudio.google.com/reporting/d5a2c2dc-ae5f-4dc9-877b-0e2aa18f2f47).

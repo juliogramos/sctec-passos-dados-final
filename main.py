@@ -210,6 +210,23 @@ print(df_subcategorias["Profit"].sum().sort_values(ascending=False), "\n")
 df_subcategorias["Profit"].sum().plot(kind="bar", figsize=(12, 8))
 plot_params_and_show("Lucro por subcategoria", "Subcategoria", "Lucro", 45)
 
+# Métricas de segmentos
+df_segmentos = df.groupby("Segment")
+
+# Segmentos com mais pedidos
+print("Número de pedidos por categorias")
+print(df_segmentos.size().sort_values(ascending=False), "\n")
+
+df_segmentos.size().plot(kind="pie", autopct="%1.1f%%")
+plot_params_and_show("Pedidos por segmento", "", "", 90)
+
+# Segmentos com mais lucros
+print("Lucro por segmento")
+print(df_segmentos["Profit"].sum().sort_values(ascending=False), "\n")
+
+df_segmentos["Profit"].sum().plot(kind="pie", autopct="%1.1f%%")
+plot_params_and_show("Lucro por segmento", "", "", 90)
+
 # Relação entre desconto e lucro?
 df.plot(kind="scatter", x="Discount", y="Profit")
 plot_params_and_show("Lucro por desconto", "Desconto", "Lucro", 45)
@@ -238,6 +255,17 @@ print(
     f"Quantidade de entregas no mesmo dia: {entregas_mesmo_dia}, {entregas_mesmo_dia / len(df) * 100:.2f}% das entregas",
     "\n",
 )
+
+# Métricas modo de entrega
+df_modos_entrega = df.groupby("Ship Mode")
+
+# Pedidos por modo de entrega
+df_modos_entrega.size().plot(kind="bar", figsize=(12, 12))
+plot_params_and_show("Pedidos por modo de entrega", "Modo de entrega", "Pedidos", 45)
+
+# Lucro médio por modo de entrega
+df_modos_entrega["Profit"].mean().plot(kind="bar", figsize=(12, 12))
+plot_params_and_show("Lucro por modo de entrega", "Modo de entrega", "Lucro", 45)
 
 # Top 10 cidades com mais pedidos
 df_cidades = df.groupby("City")
