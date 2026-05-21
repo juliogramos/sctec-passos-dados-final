@@ -287,6 +287,3 @@ plot_params_and_show("Pedidos por ano", "Ano", "Pedidos", 45)
 df_anos = df.groupby("MY Order Year")
 df_anos["Profit"].sum().plot(kind="line")
 plot_params_and_show("Lucro por ano", "Ano", "Lucro", 45)
-
-# Exportando dataset modificado
-df.to_csv("superstore_modificado.csv")
