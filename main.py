@@ -259,16 +259,30 @@ plot_params_and_show(
     "Top 10 cidades com mais entregas imediatas", "Cidades", "Entregas imediatas", 45
 )
 
-# Média de vendas por mês
-df_meses = df.groupby("MY Order Month Name")
-df_meses["Sales"].mean().plot(kind="line")
-plt.xticks(range(1, 13), list(meses_map.values()))
-plot_params_and_show("Média de pedidos por mês", "Mês", "Pedidos", 45)
+# Vendas por mês
+df_meses = df.sort_values(["MY Order Month"], ascending=True).groupby("MY Order Month")
+df_meses.size().plot(kind="bar").set_xticklabels(list(meses_map.values()))
+print(df_meses.size().nlargest(3))
+plot_params_and_show("Pedidos por mês", "Mês", "Pedidos", 90)
 
-# Crescimento de pedidos por ano
+# Produtos mais comprados em Novembro e Dezembro
+df_produtos_novembro_dezembro = df[
+    (df["MY Order Month Name"] == "November")
+    | (df["MY Order Month Name"] == "December")
+].groupby("Product Name")
+df_produtos_novembro_dezembro.size().nlargest(10).plot(kind="bar", figsize=(20, 12))
+plt.xticks(ha="right")
+plot_params_and_show("Produtos mais comprados em Dezembro", "Produtos", "Vendas", 45)
+
+# Pedidos por ano
 df_anos = df.groupby("MY Order Year")
-df_anos["Sales"].size().plot(kind="line")
+df_anos.size().plot(kind="line")
 plot_params_and_show("Pedidos por ano", "Ano", "Pedidos", 45)
+
+# Lucro por ano
+df_anos = df.groupby("MY Order Year")
+df_anos["Profit"].sum().plot(kind="line")
+plot_params_and_show("Lucro por ano", "Ano", "Lucro", 45)
 
 # Exportando dataset modificado
 df.to_csv("superstore_modificado.csv")

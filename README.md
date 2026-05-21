@@ -71,10 +71,17 @@ Nas subcategorias, as duas que lideram as vendas são fichários e papel. As dua
 
 Após isso, analisei a relação entre desconto o lucro. O gráfico de pontos deixou aparente que as vendas com 0 e 20% de desconto tendem a gerar mais lucros. Um gráfico de barra filtrando apenas lucros positivos revelou que descontos acima de 40% não geram nenhum lucro. Uma descoberta surpreendente foi que a maioria das vendas foram realizadas com descontos de 0 e 20%, o que pode indicar que o fato desses valores gerarem mais lucro se deve apenas pela maior frequência e não por uma correlação real.
 
+Checando os tempos de entrega, descobri que elas levam entre 0 e 7 dias, e que entregas imediatas compõe aproximadamente 5.5% de todas as entregas. Por curiosidade, resolvi analisar dados sobre as vendas por cidade para ver se o tempo de entrega tem alguma relação com as vendas. Nova Iorque é a cidade com mais vendas e com mais entregas imediatas, mas Los Angeles é a segunda em vendas e a quinta em entregas imediatas, então não há fortes evidências de uma correlação.
+
+Finalmente, analisei as datas dos pedidos. Os meses que possuem a maior quantidade de pedidos são Novembro e Dezembro, o que condiz com os feriados de fim de ano como Natal e Ano Novo. Por curiosidade, verifiquei os produtos mais comprados em Novembro e Dezembro para ver se haviam alguns produtos mais "natalinos", mas o top 3 não se alterou.
+
+Por fim, chequei o crescimento do número de pedidos e do lucro por ano. O número de pedidos parece estar aumentando exponencialmente, enquanto o lucro aumenta linearmente. Diria que essa loja está tendo bom crescimento financeiro.
+
 ## Principais Insights
 
 - Tecnologia gera mais lucro mesmo não gerando tantas vendas
 - Mesas geram muito prejuízo e não são tão vendidas, seria bom parar de vender elas
 - Descontos acima de 40% não geram nenhum lucro
+- Maior parte das vendas acontece Novembro e Dezembro, talves presentes?
 
 ## Dashboard
