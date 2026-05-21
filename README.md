@@ -57,6 +57,8 @@ Após isso foi feita a identificação de outliers. As colunas de vendas, quanti
 
 As colunas de datas foram importadas como string. Converti essas colunas para objetos de data, mas salvei os resultados em novas colunas ao invés de sobrescrever os valores string. Decidi que usaria o prefixo "MY" para identificar fácilmente quais colunas foram criadas por mim.
 
+Cogitei mudar o nome da coluna "Sales" para algo como "Renda", já que várias vezes me confundi quanto a pedidos e vendas, mas no fim decidi deixar como está. Então para deixar esclarecido: sempre que algum print ou gráfico se referir a "vendas", está na verdade se referindo à coluna "Sales" que é a renda recebida pelo pedido. Quando aparecer "compras" ou "pedidos", se trata ao número de pedidos, ou seja, o número de linhas em um certo grupo.
+
 A partir dessas datas, fiz o feature engineering de dados que julguei serem interessantes: mês do pedido, ano do pedido e quantos dias o pedido levou para ser entregue.
 
 ### 4. Análise exploratória

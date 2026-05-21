@@ -179,12 +179,12 @@ plot_params_and_show("Top 10 produtos mais vendidos", "Produtos", "Vendas", 45)
 # Métricas de categorias
 df_categorias = df.groupby("Category")
 
-# Categorias com mais vendas
-print("Número de vendas por categorias")
+# Categorias com mais pedidos
+print("Número de pedidos por categorias")
 print(df_categorias.size().sort_values(ascending=False), "\n")
 
 df_categorias.size().plot(kind="pie", autopct="%1.1f%%")
-plot_params_and_show("Vendas por categoria", "", "", 90)
+plot_params_and_show("Pedidos por categoria", "", "", 90)
 
 # Categorias com mais lucros
 print("Lucro por categoria")
@@ -196,12 +196,12 @@ plot_params_and_show("Lucro por categoria", "", "", 90)
 # Métricas de subcategorias
 df_subcategorias = df.groupby("Sub-Category")
 
-# Subcategorias com mais vendas
-print("Número de vendas por subcategorias")
+# Subcategorias com mais pedidos
+print("Número de pedidos por subcategorias")
 print(df_subcategorias.size().sort_values(ascending=False), "\n")
 
 df_subcategorias.size().plot(kind="bar", figsize=(12, 8))
-plot_params_and_show("Vendas por subcategoria", "Subcategoria", "Vendas", 45)
+plot_params_and_show("Pedidos por subcategoria", "Subcategoria", "Pedidos", 45)
 
 # Subcategorias com mais lucros
 print("Lucro por subcategoria")
@@ -221,9 +221,10 @@ plot_params_and_show(
     "Instâncias de lucro positivo por desconto", "Desconto", "Nº de lucros", 45
 )
 
+# Pedidos por valor de desconto
 df_desconto = df.groupby("Discount")
 df_desconto.size().plot(kind="bar")
-plot_params_and_show("Vendas por valor de desconto", "Desconto", "Vendas", 45)
+plot_params_and_show("Pedidos por valor de desconto", "Desconto", "Pedidos", 45)
 
 # Informações sobre o tempo de entrega
 print("INFORMAÇÕES SOBRE O TEMPO DE ENTREGA")
@@ -238,7 +239,7 @@ print(
     "\n",
 )
 
-# Top 10 cidades com mais vendas
+# Top 10 cidades com mais pedidos
 df_cidades = df.groupby("City")
 df_cidades.size().nlargest(10).plot(kind="bar", figsize=(12, 8))
 plot_params_and_show("Top 10 cidades com mais pedidos", "Cidades", "Pedidos", 45)
@@ -259,7 +260,7 @@ plot_params_and_show(
     "Top 10 cidades com mais entregas imediatas", "Cidades", "Entregas imediatas", 45
 )
 
-# Vendas por mês
+# Pedidos por mês
 df_meses = df.sort_values(["MY Order Month"], ascending=True).groupby("MY Order Month")
 df_meses.size().plot(kind="bar").set_xticklabels(list(meses_map.values()))
 print(df_meses.size().nlargest(3))
@@ -272,7 +273,9 @@ df_produtos_novembro_dezembro = df[
 ].groupby("Product Name")
 df_produtos_novembro_dezembro.size().nlargest(10).plot(kind="bar", figsize=(20, 12))
 plt.xticks(ha="right")
-plot_params_and_show("Produtos mais comprados em Dezembro", "Produtos", "Vendas", 45)
+plot_params_and_show(
+    "Produtos mais comprados em Novembro e Dezembro", "Produtos", "Pedidos", 45
+)
 
 # Pedidos por ano
 df_anos = df.groupby("MY Order Year")
